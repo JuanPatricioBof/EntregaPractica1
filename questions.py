@@ -34,17 +34,18 @@ for question, options, correct_index in questions_to_ask:
          print(f"{i + 1}. {answer}")
     # El usuario tiene 2 intentos para responder correctamente
     for intento in range(2):
-        try:
-            user_answer = int(input("Respuesta: "))-1
-            # Comprobar si la respuesta esta dentro de las posibilidades
-            if user_answer < 0 or user_answer >= 4 :
+        user_answer = (input("Respuesta: "))
+        # Comprobar si la respuesta esta dentro de las posibilidades
+        if user_answer.isdigit():
+            user_answer = int(user_answer)
+            if  user_answer < 0 or user_answer > 4:
                 print("Respuesta no valida")
                 sys.exit(1)
-        except ValueError:
+        else:
             print("Respuesta no valida")
             sys.exit(1)
         # Se verifica si la respuesta es correcta
-        if user_answer ==correct_index:
+        if user_answer-1 ==correct_index:
             nota+=1
             print("¡Correcto!")
             break
